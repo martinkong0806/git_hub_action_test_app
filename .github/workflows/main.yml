@@ -2,7 +2,7 @@ on: push
 name: Test and Build
 jobs:
   build:
-    name: Build APK
+    name: Build and Test Android
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -28,8 +28,29 @@ jobs:
       - name: Build Android Appbundle
         run: flutter build appbundle
 
-      # - name: Build iOS
-      #   run: flutter build ios --release --no-codesign
+  build:
+    name: Build and Test Android
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          architecture: x64
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run unit tests
+        run: flutter test --coverage
+
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
+
+
     # - name: Create a Release APK
     #   uses: ncipollo/release-action@v1
     #   with:
