@@ -15,9 +15,15 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
-        
+
       - name: Run unit tests
         run: flutter test --coverage
+
+      - name: Build Android Appbundle
+        run: flutter build appbundle
+
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
     # - name: Create a Release APK
     #   uses: ncipollo/release-action@v1
     #   with:
