@@ -1,7 +1,7 @@
 on: push
 name: Test and Build
 jobs:
-  build:
+  test_and_build_android:
     name: Build and Test Android
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,7 @@ jobs:
       - name: Build Android Appbundle
         run: flutter build appbundle
 
-  build:
+  test_and_build_ios:
     name: Build and Test iOS
     runs-on: macos-latest
     steps:
