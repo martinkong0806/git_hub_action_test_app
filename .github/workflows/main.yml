@@ -15,6 +15,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        
+      - name: Run unit tests
+        run: flutter test --coverage
     # - name: Create a Release APK
     #   uses: ncipollo/release-action@v1
     #   with:
